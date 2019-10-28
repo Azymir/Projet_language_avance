@@ -11,6 +11,6 @@ class Pompe
 	public:
     Pompe();
     ~Pompe();
-    int getMarche();
+    int getMarche(); 
 };
 #endif
