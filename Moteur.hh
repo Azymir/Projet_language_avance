@@ -4,12 +4,13 @@
 class Moteur 						// M1 M2 alimenter
 {
 	private:
-		int ID;
+		// int ID;
+		int etat;
 	public:
 		Moteur();
 		Moteur(int ID);
 		Moteur(const Moteur& m);
 		~Moteur();
-		int getID();
+		int getEtat();
 };
 #endif

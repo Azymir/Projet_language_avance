@@ -4,12 +4,13 @@
 class Vanne // (VT12,V13,V23),(VT12 ,VT23) 
 {
 	private:
-		bool vannes;
+		bool etat;
 	public:
 		Vanne();
-		Vanne(bool vannes);
+		Vanne(bool etat);
 		Vanne(const Vanne &v);
-		bool getVannes();
+		bool getEtat();
+		void changer_etat(bool nouvel_etat);
 		~Vanne();
 };
 #endif
