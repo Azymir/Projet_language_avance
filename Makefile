@@ -1,12 +1,12 @@
 CPP=g++
 CFLAGS=-c
-all: clean Vol
+all: clean Vol test
 
 test:
 	./Vol
 
-Vol: Reservoir.o Pompe.o  Vanne.o Moteur.o Main.o
-	$(CPP) Main.o Reservoir.o Pompe.o Vanne.o Moteur.o -o Vol
+Vol: Reservoir.o Pompe.o Vanne.o Element.o Moteur.o Main.o
+	$(CPP) Main.o Reservoir.o Pompe.o Vanne.o Element.o Moteur.o -o Vol
 
 Main.o:
 	$(CPP) Main.cc $(CFLAGS)
@@ -18,6 +18,8 @@ Vanne.o:
 	$(CPP) Vanne.cc $(CFLAGS)
 Moteur.o:
 	$(CPP) Moteur.cc $(CFLAGS)
+Element.o:
+	$(CPP) Element.cc $(CFLAGS)
 
 
 editeur:

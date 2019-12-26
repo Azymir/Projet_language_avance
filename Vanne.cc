@@ -1,13 +1,14 @@
 using namespace std;
 #include "Vanne.hh"
+#include "Element.hh"
 #include <iostream>
 #include <cmath>
 
 Vanne::Vanne(): etat(0){}										// Constructeur avec la Vanne par defaut
 
 
-Vanne::Vanne(bool vannes) {									// constructeur avec la Vanne passées en paramètres
-	this->etat = 1;
+Vanne::Vanne(bool etat) {									// constructeur avec la Vanne passées en paramètres
+	this->etat = etat;
 }
 
 Vanne::Vanne(const Vanne &v) {									// constructeur avec la Vanne en paramètre

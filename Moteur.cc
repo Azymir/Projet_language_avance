@@ -19,5 +19,5 @@ int Moteur::getEtat(){							// getter de ID
 }
 
 Moteur::~Moteur(){								// Destructeur
-	cout << "destruciton Moteur " << endl;
+	cout << "destruction Moteur " << endl;
 }

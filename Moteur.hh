@@ -1,7 +1,7 @@
 #ifndef _Moteur_h
 #define _Moteur_h
 
-class Moteur 						// M1 M2 alimenter
+class Moteur					// M1 M2 alimenter
 {
 	private:
 		// int ID;

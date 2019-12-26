@@ -4,6 +4,7 @@
 #include "Moteur.hh"
 #include "Reservoir.hh"
 #include "Pompe.hh"
+
 using namespace std;
 
 int main() {
@@ -12,6 +13,8 @@ int main() {
 	A->getEtat();
     delete A;
 	
-	cout<<"affiche test1";
+	
+
 	return 0;
+	
 }
