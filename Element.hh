@@ -13,6 +13,7 @@ class Element						// M1 M2 alimenter
 	Element(int etat);						// constructeur avec la pompe passées en paramètres
 	virtual int getEtat();
 	virtual void setEtat(int etat);
+	virtual void description();
 	virtual ~Element();
 							// panne des pompes;
 	

@@ -6,16 +6,20 @@ using namespace std;
 
 Element::Element(){
 	this->etat = 0;
+	//~ cout<<"appel constructeur par defaut d'un element\n";
 }						// Constructeur avec la pompe par defaut
 
 
 Element::Element(int etat) {						// constructeur avec la pompe passées en paramètres
-	this->etat = 1;
+	this->etat = etat;
 }
-int Element::getEtat(){	
-	cout<<"l'element donnée est dans l'état"<<this->etat<<"\n";						// getter de ID
+int Element::getEtat(){							// getter de ID
 	return this->etat;
 	
+	
+}
+void Element::description(){
+	cout<<"l'état de l'objet est: "<<this->etat<<"\n";
 }
 // un element avec un état à 0 est en état de marche, à 1 il est à l'arret
 void Element::setEtat(int etat){
@@ -32,9 +36,9 @@ void Element::setEtat(int etat){
 	}
 	else
 	{
-		cout<<"erreur, l'état entré n'est pas reconnu\n";
+		cout<<"erreur, l'état entré n'est pas reconnu "<<"valeur affiché: "<<etat<<endl;
 	}
 }
 Element::~Element(){								// Destructeur
-	cout << "destruction de l'élèment avec la classe mère\n " << endl;
+	//~ cout << "destruction de l'élèment avec la classe mère\n " << endl;
 }

@@ -1,16 +1,17 @@
 #ifndef _Moteur_h
 #define _Moteur_h
-
-class Moteur					// M1 M2 alimenter
+#include "Element.hh"
+class Moteur:public Element					// M1 M2 alimenter
 {
 	private:
 		// int ID;
-		int etat;
+		//~ int etat;
 	public:
 		Moteur();
 		Moteur(int ID);
 		Moteur(const Moteur& m);
+		void description();
 		~Moteur();
-		int getEtat();
+		
 };
 #endif

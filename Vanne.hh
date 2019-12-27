@@ -8,6 +8,7 @@ class Vanne: public Element // (VT12,V13,V23),(VT12 ,VT23)
 	public:
 		Vanne();
 		Vanne(int etat);
+		void description();
 		~Vanne();
 };
 #endif

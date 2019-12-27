@@ -4,10 +4,12 @@ using namespace std;
 #include <iostream>
 #include <cmath>
 
-Reservoir::Reservoir(){
+Reservoir::Reservoir():Element()
+{
 	//~ principale = 0;
 	//~ secours = 0;
 	//~ fuel = 0;
+	//~ cout<<"Construction d'un reservoir par défaut\n";
 }						// Constructeur avec la Reservoir par defaut, par defaut tout est à zéro
 
 
@@ -17,8 +19,8 @@ Reservoir::Reservoir(){
 	//~ this->fuel = fuel;
 	//~ this->volume = volume;
 //~ }
- Reservoir::Reservoir( int fuel, int volume) {				// constructeur avec la Reservoir passées en paramètres
-	this->fuel = fuel;
+ Reservoir::Reservoir( int fuel, int volume):Element(fuel) {				// constructeur avec la Reservoir passées en paramètres
+
 	this->volume = volume;
 }
 
@@ -28,10 +30,10 @@ Reservoir::Reservoir(){
 	//~ this->fuel = r.fuel;
 //~ }
 
-Reservoir::Reservoir(const Reservoir& r) {								// constructeur avec la Reservoir en paramètre
-	this->fuel = r.fuel;
-	this->volume= r.volume;
-}
+//~ Reservoir::Reservoir(const Reservoir& r) {								// constructeur avec la Reservoir en paramètre
+	//~ setEtat(r.getEtat());
+	//~ this->volume= r.volume;
+//~ }
 
 //~ Pompe Reservoir::getone(){											// getter de Pompe 1
 	//~ return this->getone;
@@ -41,15 +43,16 @@ Reservoir::Reservoir(const Reservoir& r) {								// constructeur avec la Reserv
 	//~ return this->gettwo;
 //~ }
 
-int Reservoir::getFuel(){												// getter de fuel
-	return this->fuel;
-}
+//~ int Reservoir::getFuel(){												// getter de fuel
+	//~ return this->fuel;
+//~ }
 
 
 
 Reservoir::~Reservoir(){												// Destructeur
-	cout << "destruction Reservoir " << endl;
+	//~ cout << "destruction Reservoir " << endl;
 }
 void Reservoir::description(){
-	cout << "cet objet est un reservoir\n" << "il contient une pompe principale, une pompe de secours, un tank et un volume donné\n" ;
+	cout << "cet objet est un reservoir, ";
+	Element::description();
 }
