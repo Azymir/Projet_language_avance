@@ -10,10 +10,10 @@ class Element						// M1 M2 alimenter
 	public:
 	//~ virtual void Panne();	
 	Element();						// Constructeur avec la pompe par defaut
-
-Element(int etat);						// constructeur avec la pompe passées en paramètres
-int getEtat();
-~Element();
+	Element(int etat);						// constructeur avec la pompe passées en paramètres
+	virtual int getEtat();
+	virtual void setEtat(int etat);
+	virtual ~Element();
 							// panne des pompes;
 	
 };

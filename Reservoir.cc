@@ -5,23 +5,32 @@ using namespace std;
 #include <cmath>
 
 Reservoir::Reservoir(){
-	principale = 0;
-	secours = 0;
-	fuel = 0;
-}						// Constructeur avec la Reservoir par defaut
+	//~ principale = 0;
+	//~ secours = 0;
+	//~ fuel = 0;
+}						// Constructeur avec la Reservoir par defaut, par defaut tout est à zéro
 
 
-Reservoir::Reservoir(Pompe principale, Pompe secours, int fuel, int volume) {				// constructeur avec la Reservoir passées en paramètres
-	this->principale = 1;
-	this->secours = 1;
+//~ Reservoir::Reservoir(Pompe principale, Pompe secours, int fuel, int volume) {				// constructeur avec la Reservoir passées en paramètres
+	//~ this->principale = 1;
+	//~ this->secours = 1;
+	//~ this->fuel = fuel;
+	//~ this->volume = volume;
+//~ }
+ Reservoir::Reservoir( int fuel, int volume) {				// constructeur avec la Reservoir passées en paramètres
 	this->fuel = fuel;
 	this->volume = volume;
 }
 
+//~ Reservoir::Reservoir(const Reservoir& r) {								// constructeur avec la Reservoir en paramètre
+	//~ this->principale = r.principale;
+	//~ this->secours = r.secours;
+	//~ this->fuel = r.fuel;
+//~ }
+
 Reservoir::Reservoir(const Reservoir& r) {								// constructeur avec la Reservoir en paramètre
-	this->principale = r.principale;
-	this->secours = r.secours;
 	this->fuel = r.fuel;
+	this->volume= r.volume;
 }
 
 //~ Pompe Reservoir::getone(){											// getter de Pompe 1

@@ -5,12 +5,13 @@ class Reservoir					 // tank1 2 3
 {
 	private:
 		int fuel;
-		Pompe principale;
-		Pompe secours;
+		//~ Pompe principale;
+		//~ Pompe secours;
 		int volume;
 	public:
 		Reservoir();
-		Reservoir(Pompe pone, Pompe ptwo, int fuel, int volume);
+		//~ Reservoir(Pompe pone, Pompe ptwo, int fuel, int volume);
+		Reservoir(int fuel, int volume);
 		Reservoir(const Reservoir& r);
 		//~ Pompe getone();
 		//~ Pompe gettwo();
