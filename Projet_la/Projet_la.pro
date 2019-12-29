@@ -26,10 +26,22 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += \
         main.cpp \
         widget.cpp \
-    graphique.cpp
+    graphique.cpp \
+    vanne.cpp \
+    tableau_bord.cpp \
+    reservoir.cpp \
+    pompe.cpp \
+    moteur.cpp \
+    element.cpp
 
 HEADERS += \
         widget.h \
-    graphique.h
+    graphique.h \
+    vanne.h \
+    tableau_bord.h \
+    reservoir.h \
+    pompe.h \
+    moteur.h \
+    element.h
 
 STATECHARTS +=
