@@ -13,6 +13,11 @@ class Widget : public QWidget
 public:
     Widget(QWidget *parent = 0);
     ~Widget();
+private slots:
+    void VT12clic();
+    void VT23clic();
+
+
 private:
     QPushButton* VT12;
     QPushButton* VT23;

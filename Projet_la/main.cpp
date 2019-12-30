@@ -8,7 +8,7 @@ int main(int argc, char *argv[])
     Widget w;
     graphique g;
 
-    //w.show();
+    w.show();
     g.show();
 
     return a.exec();

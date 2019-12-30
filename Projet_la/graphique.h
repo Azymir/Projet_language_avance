@@ -6,6 +6,12 @@
 #include <QPainter>
 #include <QtGui>
 #include <QGraphicsScene>
+#include "element.h"
+#include "vanne.h"
+#include "moteur.h"
+#include "reservoir.h"
+#include "pompe.h"
+#include "tableau_bord.h"
 
 class graphique : public QWidget
 {
