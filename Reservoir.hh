@@ -1,6 +1,6 @@
 #ifndef _Reservoir_h
 #define _Reservoir_h
-#include "Pompe.hh"
+#include "Element.hh"
 class Reservoir: public Element				 // tank1 2 3 
 {
 	private:
@@ -12,8 +12,8 @@ class Reservoir: public Element				 // tank1 2 3
 	public:
 		Reservoir();
 		//~ Reservoir(Pompe pone, Pompe ptwo, int fuel, int volume);
-		Reservoir(int fuel, int volume);
-		Reservoir(const Reservoir& r);
+		Reservoir(int etat, int volume);
+		//~ Reservoir(const Reservoir& r);
 		//~ Pompe getone();
 		//~ Pompe gettwo();
 		//~ int getFuel();
