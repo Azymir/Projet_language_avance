@@ -5,6 +5,7 @@
 #include <QPushButton>
 #include <QHBoxLayout>
 #include <QDebug>
+#include "tableau_bord.h"
 
 class Widget : public QWidget
 {
@@ -14,7 +15,7 @@ public:
     Widget(QWidget *parent = 0);
     ~Widget();
 private slots:
-    void VT12clic();
+    TableauBord VT12clic(TableauBord &I);
     void VT23clic();
 
 

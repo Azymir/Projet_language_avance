@@ -2,21 +2,24 @@ using namespace std;
 #include "element.h"
 #include <iostream>
 #include <cmath>
-
 Element::Element(){
     this->etat = 0;
+    //~ this->nom = "pas de nom";
     //~ cout<<"appel constructeur par defaut d'un element\n";
 }						// Constructeur avec la pompe par defaut
 
 
-Element::Element(int etat) {						// constructeur avec la pompe passées en paramètres
+Element::Element(int etat) {
     this->etat = etat;
 }
-int Element::getEtat(){							// getter de ID
+int Element::getEtat(){
     return this->etat;
 
 
 }
+//~ char* Element::getNom(){
+    //~ return this->nom;
+//~ }
 void Element::description(){
     cout<<"l'état de l'objet est: "<<this->etat<<"\n";
 }
@@ -30,14 +33,17 @@ void Element::setEtat(int etat){
     }
     if(etat == 1)
     {
-        cout<<"mise à l'arret de l'élement\n";
+        cout<<"Arret de l'élement\n";
         this->etat = etat;
     }
-    else
+    if(etat != 1 and etat != 0)
     {
-        cout<<"erreur, l'état entré n'est pas reconnu "<<"valeur affiché: "<<etat<<endl;
+        cout<<"erreur, l'état entré n'est pas reconnu, "<<"valeur affiché: "<<etat<<endl;
     }
 }
+//~ void Element::setNom(char* nom){
+    //~ this->nom = nom;
+//~ }
 Element::~Element(){								// Destructeur
     //~ cout << "destruction de l'élèment avec la classe mère\n " << endl;
 }

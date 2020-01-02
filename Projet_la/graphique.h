@@ -20,7 +20,11 @@ public:
     explicit graphique(QWidget *parent = nullptr);
 protected:
     void paintEvent(QPaintEvent* e);
+    void mousePressEvent(QMouseEvent *event);
 signals:
+
+private:
+    bool VT12 = false;
 
 public slots:
 };

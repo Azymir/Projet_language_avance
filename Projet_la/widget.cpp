@@ -24,7 +24,6 @@ Widget::Widget(QWidget *parent)
     layout->addWidget(V13,2,1);
     layout->addWidget(V23,2,3);
     setLayout(layout);
-
     connect(VT12,SIGNAL(clicked(bool)),this,SLOT(VT12clic()));
     connect(VT23,SIGNAL(clicked(bool)),this,SLOT(VT23clic()));
 }
@@ -34,9 +33,12 @@ Widget::~Widget()
     qDebug() << "destruction d'un bouton" << endl;
 }
 
-void Widget::VT12clic()
+TableauBord Widget::VT12clic(TableauBord &I)
 {
     qDebug() << "Vous avez cliqué sur le bouton VT12" << endl;
+    I.ouvrir_VT12();
+    I.description();
+    return I;
 }
 
 void Widget::VT23clic()

@@ -13,8 +13,7 @@ void graphique::paintEvent(QPaintEvent *e)
     p.setPen(Qt::black);
     p.setBrush (Qt::black);
     bool a = 0;
-//    TableauBord TB;
-//    qDebug() << TB.VT12.getEtat() << endl;
+    TableauBord TB;
 
     p.fillRect(10,10,100,100,Qt::red);      // Tank 1
     p.fillRect(260,10,100,100,Qt::green);   // Tank 2
@@ -37,7 +36,7 @@ void graphique::paintEvent(QPaintEvent *e)
     p.fillRect(300,300,20,100,Qt::gray);    // Moteur 2
     p.fillRect(590,300,20,100,Qt::gray);    // Moteur 3
 
-    if(!a){
+    if(!VT12){
         p.drawEllipse(160,25,50,50);        //VT12
         p.fillRect(180,25,10,50,Qt::white); // Fermé
     }
@@ -46,7 +45,7 @@ void graphique::paintEvent(QPaintEvent *e)
         p.fillRect(162,48,47,10,Qt::white); // Ouvert
     }
 
-    if(!a){
+    if(!VT12){
         p.drawEllipse(410,25,50,50);        //VT23
         p.fillRect(430,25,10,50,Qt::white); // Fermé
     }
@@ -121,5 +120,13 @@ void graphique::paintEvent(QPaintEvent *e)
     p.drawText(160,220,"V12");              //V12 Text
     p.drawText(360,120,"V13");              //V13 Text
     p.drawText(415,250,"V23");              //V23 Text
+
+    updateGeometry();
+}
+
+void graphique::mousePressEvent(QMouseEvent *event)
+{
+    VT12 = true;
+    repaint();
 }
 

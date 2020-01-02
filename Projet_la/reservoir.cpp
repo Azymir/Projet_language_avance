@@ -1,6 +1,7 @@
 #include "reservoir.h"
 using namespace std;
 #include "pompe.h"
+#include "element.h"
 #include <iostream>
 #include <cmath>
 
@@ -19,7 +20,7 @@ Reservoir::Reservoir():Element()
     //~ this->fuel = fuel;
     //~ this->volume = volume;
 //~ }
- Reservoir::Reservoir( int fuel, int volume):Element(fuel) {				// constructeur avec la Reservoir passées en paramètres
+ Reservoir::Reservoir( int etat, int volume):Element(etat) {				// constructeur avec la Reservoir passées en paramètres
 
     this->volume = volume;
 }
