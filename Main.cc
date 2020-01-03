@@ -11,12 +11,7 @@ using namespace std;
 int main() {
 	
     TableauBord I;
-    I.description();
-   
-  
-  
-    
-    
+   //~ cout<<I.getV12().getEtat();
     
     
 	return 0;

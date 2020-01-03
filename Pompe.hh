@@ -14,6 +14,8 @@ class Pompe: public Element			// P1 et P2 dans Reservoir
 	public:
 		Pompe();
 		Pompe(const int etat, const bool fonctionnel);
+		bool getFonctionnel();
+		void setFonctionnel(bool fonctionnel);
 		//~ Pompe(const Pompe &p);
 		~Pompe();
 		void description();

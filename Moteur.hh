@@ -6,9 +6,8 @@
 class Moteur:public Element					// M1 M2 alimenter
 {
 	private:
-	Pompe pompe;
-		// int ID;
-		//~ int etat;
+	Pompe pompe; //permet à partir du moteur de savoir quel pompe l'alimente
+	Reservoir reservoir; // on stoque le reservoir d'ou provient l'essence
 	public:
 		Moteur();
 		Moteur(int ID);

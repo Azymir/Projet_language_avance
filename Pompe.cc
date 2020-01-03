@@ -12,7 +12,10 @@ Pompe::Pompe(): Element() {
 Pompe::Pompe(const int etat, const bool fonctionnel):Element(etat){					// constructeur avec la pompe passées en paramètres
 	this->fonctionnel = fonctionnel;
 }
-
+bool Pompe::getFonctionnel(){
+	return this->fonctionnel;
+}
+void Pompe::setFonctionnel(bool fonctionnel){this->fonctionnel = fonctionnel;}
 void Pompe::description(){
 	cout<<"cet element est une pompe, ";
 	if(this->fonctionnel == 0){ cout<<"elle est fonctionnelle, "<<this->fonctionnel<<", "; }

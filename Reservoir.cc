@@ -23,7 +23,8 @@ Reservoir::Reservoir():Element()
 
 	this->volume = volume;
 }
-
+bool Reservoir::getPlein(){return this->plein;}
+void Reservoir::setPlein(bool plein){this->plein = plein;}
 //~ Reservoir::Reservoir(const Reservoir& r) {								// constructeur avec la Reservoir en paramètre
 	//~ this->principale = r.principale;
 	//~ this->secours = r.secours;
