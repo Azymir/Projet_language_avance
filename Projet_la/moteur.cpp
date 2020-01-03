@@ -4,6 +4,7 @@ using namespace std;
 #include <cmath>
 
 Moteur::Moteur():Element(){
+
     //~ cout<<"appel constructeur pour un moteur\n";
     }						// Constructeur avec la pompe par defaut
 
