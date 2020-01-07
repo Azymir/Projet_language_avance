@@ -1,11 +1,7 @@
 #include "vanne.h"
-using namespace std;
-
-#include <iostream>
-#include <cmath>
 
 Vanne::Vanne(): Element(){
-    //~ cout<<"créeation d'une vanne\n";
+    //~ qDebug()<<"créeation d'une vanne\n";
 
     }										// Constructeur avec la Vanne par defaut
 
@@ -14,9 +10,9 @@ Vanne::Vanne(int etat):Element(etat){									// constructeur avec la Vanne pass
 
 }
 void Vanne::description(){
-    cout<<"cet objet est une vanne,";
+    qDebug()<<"cet objet est une vanne,";
     Element::description();
 }
 Vanne::~Vanne(){												// Destructeur
-        //~ cout << "destruction Vanne avec classe fille " << endl;
+        //~ qDebug() << "destruction Vanne avec classe fille " << endl;
 }

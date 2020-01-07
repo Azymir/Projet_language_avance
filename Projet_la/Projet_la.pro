@@ -24,6 +24,7 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 
 SOURCES += \
+    identification.cpp \
         main.cpp \
         widget.cpp \
     graphique.cpp \
@@ -35,6 +36,7 @@ SOURCES += \
     element.cpp
 
 HEADERS += \
+    identification.h \
         widget.h \
     graphique.h \
     vanne.h \

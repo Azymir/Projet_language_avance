@@ -30,3 +30,4 @@ public slots:
 };
 
 #endif // GRAPHIQUE_H
+

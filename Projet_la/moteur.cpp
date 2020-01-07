@@ -1,11 +1,9 @@
 #include "moteur.h"
-using namespace std;
-#include <iostream>
-#include <cmath>
+
 
 Moteur::Moteur():Element(){
 
-    //~ cout<<"appel constructeur pour un moteur\n";
+    //~ qDebug()<<"appel constructeur pour un moteur\n";
     }						// Constructeur avec la pompe par defaut
 
 
@@ -18,9 +16,26 @@ Moteur::Moteur(int etat):Element(etat) {						// constructeur avec la pompe pass
 //~ }
 
 void Moteur::description(){
-    cout<<"cet element est un moteur, ";
+    qDebug()<<"==========================================================/ncet element est un moteur, ";
     Element::description();
+    qDebug()<<"Description de sa pompe:";
+    this->pompe.description();
+     qDebug()<<"Description de on reservoir";
+    this->reservoir.description();
+
+}
+void Moteur::setReservoir(Reservoir R){
+    this->reservoir = R;
+}
+void Moteur::setPompe(Pompe P){
+    this->pompe = P;
+}
+Pompe Moteur::getPompe(){
+    return  this->pompe;
+}
+Reservoir Moteur::getReservoir(){
+    return this->reservoir;
 }
 Moteur::~Moteur(){								// Destructeur
-    //~ cout << "destruction Moteur " << endl;
+    //~ qDebug() << "destruction Moteur " << endl;
 }

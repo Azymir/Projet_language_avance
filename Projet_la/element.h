@@ -1,20 +1,25 @@
 #ifndef ELEMENT_H
 #define ELEMENT_H
 
+#include <QApplication>
+#include <QDebug>
+#include <string.h>
+#include <QString>
+
 class Element						// M1 M2 alimenter
 {
-    private:
-    int etat;
-    //~ char* nom;
+private:
+    int etat;  // tout les elements du projet ont un etat
+    QString nom;  // ils contiendrons aussi leur nom, ou leur id. ex: VT12
 
     public:
     //~ virtual void Panne();
-    Element();						// Constructeur avec la pompe par defaut
-    Element(int etat);						// constructeur avec la pompe passées en paramètres
+    Element();						// Constructeur par defaut
+    Element(int etat);					// constructeur avec un état passé en paramètres
     virtual int getEtat();
-    //~ virtual char* getNom();
+    virtual QString getNom();
     virtual void setEtat(int etat);
-    //~ virtual void setNom(char* nom);
+    virtual void setNom(QString nom);
     virtual void description();
     virtual ~Element();
                             // panne des pompes;

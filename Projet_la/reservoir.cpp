@@ -1,9 +1,4 @@
 #include "reservoir.h"
-using namespace std;
-#include "pompe.h"
-#include "element.h"
-#include <iostream>
-#include <cmath>
 
 Reservoir::Reservoir():Element()
 {
@@ -24,6 +19,9 @@ Reservoir::Reservoir():Element()
 
     this->volume = volume;
 }
+
+bool Reservoir::getPlein(){return this->plein;}
+void Reservoir::setPlein(bool plein){this->plein = plein;}
 
 //~ Reservoir::Reservoir(const Reservoir& r) {								// constructeur avec la Reservoir en paramètre
     //~ this->principale = r.principale;
@@ -51,9 +49,9 @@ Reservoir::Reservoir():Element()
 
 
 Reservoir::~Reservoir(){												// Destructeur
-    //~ cout << "destruction Reservoir " << endl;
+    //~ qDebug() << "destruction Reservoir " << endl;
 }
 void Reservoir::description(){
-    cout << "cet objet est un reservoir, ";
+    qDebug() << "cet objet est un reservoir, ";
     Element::description();
 }

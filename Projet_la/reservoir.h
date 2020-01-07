@@ -2,23 +2,20 @@
 #define RESERVOIR_H
 #include "pompe.h"
 #include "element.h"
+#include <iostream>
+#include <cmath>
+#include <QApplication>
 
 class Reservoir: public Element				 // tank1 2 3
 {
     private:
-    bool plein;
-        //~ int fuel;
-        //~ Pompe principale;
-        //~ Pompe secours;
-        int volume;
+        bool plein;
+        int volume;   // correspond au volume du reservoir. Il y a deux volumes possible ici, ou l'un est plus grand que l'autre.
     public:
         Reservoir();
-        //~ Reservoir(Pompe pone, Pompe ptwo, int fuel, int volume);
         Reservoir(int etat, int volume);
-        //~ Reservoir(const Reservoir& r);
-        //~ Pompe getone();
-        //~ Pompe gettwo();
-        //~ int getFuel();
+        bool getPlein();
+        void setPlein(bool plein);
         ~Reservoir();
         void description();
 };
