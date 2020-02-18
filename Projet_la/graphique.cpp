@@ -59,8 +59,9 @@ void graphique::paintEvent(QPaintEvent* e)
 
     //===============================================================
     // AFFICHAGE DES MOTEURS
-    I.provenance_moteurs();
-    I.check_moteurs();
+     I.check_moteurs();
+//    I.provenance_moteurs();
+
 
 
     //I.provenance_moteurs();
@@ -201,7 +202,7 @@ void graphique::paintEvent(QPaintEvent* e)
     p.drawText(330,75,"P22");               //P22 Text
     p.drawText(520,75,"P31");               //P31 Text
     p.drawText(580,75,"P32");               //P32 Text
-    p.drawText(10,350,"M1");                //Moteur 1 Text
+    p.drawText(12,350,"M1");                //Moteur 1 Text
     p.drawText(300,350,"M2");               //Moteur 2 Text
     p.drawText(590,350,"M3");               //Moteur 3 Text
     p.drawText(165,20,"VT12");              //VT12 Text
@@ -209,6 +210,19 @@ void graphique::paintEvent(QPaintEvent* e)
     p.drawText(160,220,"V12");              //V12 Text
     p.drawText(360,120,"V13");              //V13 Text
     p.drawText(415,250,"V23");              //V23 Text
+
+    QString M1= I.getM1().getReservoir().getNom();
+    p.drawText(13,430,M1);
+
+    QString M2= I.getM2().getReservoir().getNom();
+    p.drawText(303,430,M2);
+
+    QString M3= I.getM3().getReservoir().getNom();
+    p.drawText(593,430,M3);
+
+    QString s = QString::number(GG[0][0]);
+    QString Point = "Vos points actuels: " + s;
+    p.drawText(10,470,Point);
 
 //    updateGeometry();
 //    repaint();
