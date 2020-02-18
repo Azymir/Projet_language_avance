@@ -1,14 +1,19 @@
 #include "widget.h"
 #include "QTextEdit"
+#include "qpushbutton.h"
 TableauBord I;
-char statut;  // peut etre 'P' ou 'A', cad pilote ou administrateur
+char statut; // peut etre 'P' ou 'A', cad pilote ou administrateur
+ // variable qui va stoquer létat de la partie en cours :
+// 0: partie en cours
+// 1: partie perdu
+// 2: partie reussie !
 
 Widget::Widget(QWidget *parent)
     : QWidget(parent)
 {// VT12 VT23 P12 P22 P32 V12 V13 V23
 
-    QTextEdit *txt = new QTextEdit();
-     txt->setText("Hello, world!");
+
+
 
     if(statut == 'A')
     {
@@ -21,6 +26,8 @@ Widget::Widget(QWidget *parent)
     V12 = new QPushButton("V12",this);
     V13 = new QPushButton("V13",this);
     V23 = new QPushButton("V23",this);
+
+    //statutPA = new QPushButton("Devenir pilote",this);
 
 
     p_P11 = new QPushButton("p_P11",this);
@@ -38,6 +45,10 @@ Widget::Widget(QWidget *parent)
 
     //setCentralWidget(VT12);
     QGridLayout *layout = new QGridLayout;
+     // layout->addWidget(statutPA,9,1);
+
+
+
     layout->addWidget(VT12,0,0);
     layout->addWidget(VT23,0,1);
     layout->addWidget(P12,1,0);
@@ -80,6 +91,9 @@ Widget::Widget(QWidget *parent)
     connect(v_R1,SIGNAL(clicked(bool)),this,SLOT(vidange_R1()));
     connect(v_R2,SIGNAL(clicked(bool)),this,SLOT(vidange_R2()));
     connect(v_R3,SIGNAL(clicked(bool)),this,SLOT(vidange_R3()));
+
+    // connect(statutPA,SIGNAL(clicked(bool)),this,SLOT(statutclic()));
+
     }
     if(statut == 'P')
     {
@@ -93,9 +107,17 @@ Widget::Widget(QWidget *parent)
         V13 = new QPushButton("V13",this);
         V23 = new QPushButton("V23",this);
 
+        exo1=new QPushButton("exo1",this);
+        exo2=new QPushButton("exo2",this);
+        exo3=new QPushButton("exo3",this);
+        exo4=new QPushButton("exo4",this);
+        exo5=new QPushButton("exo5",this);
+        exo6=new QPushButton("exo6",this);
 
-        //setCentralWidget(VT12);
+        exoV =new QPushButton("Verifier l'exercice",this);
+
         QGridLayout *layout = new QGridLayout;
+
         layout->addWidget(VT12,0,0);
         layout->addWidget(VT23,0,1);
         layout->addWidget(P12,1,0);
@@ -105,7 +127,18 @@ Widget::Widget(QWidget *parent)
         layout->addWidget(V13,2,1);
         layout->addWidget(V23,2,2);
 
+        layout->addWidget(exo1,3,1);
+        layout->addWidget(exo2,4,1);
+        layout->addWidget(exo3,5,1);
+        layout->addWidget(exo4,6,1);
+        layout->addWidget(exo5,7,1);
+        layout->addWidget(exo6,8,1);
+        layout->addWidget(exoV,9,1);
+
+
+
         setLayout(layout);
+
         connect(VT12,SIGNAL(clicked(bool)),this,SLOT(VT12clic()));
         connect(VT23,SIGNAL(clicked(bool)),this,SLOT(VT23clic()));
         connect(V12,SIGNAL(clicked(bool)),this,SLOT(V12clic()));
@@ -115,6 +148,18 @@ Widget::Widget(QWidget *parent)
         connect(P12,SIGNAL(clicked(bool)),this,SLOT(P12clic()));
         connect(P22,SIGNAL(clicked(bool)),this,SLOT(P22clic()));
         connect(P32,SIGNAL(clicked(bool)),this,SLOT(P32clic()));
+
+        connect(exo1,SIGNAL(clicked(bool)),this,SLOT(exo1clic()));
+        connect(exo2,SIGNAL(clicked(bool)),this,SLOT(exo2clic()));
+        connect(exo3,SIGNAL(clicked(bool)),this,SLOT(exo3clic()));
+        connect(exo4,SIGNAL(clicked(bool)),this,SLOT(exo4clic()));
+        connect(exo5,SIGNAL(clicked(bool)),this,SLOT(exo5clic()));
+        connect(exo6,SIGNAL(clicked(bool)),this,SLOT(exo6clic()));
+
+         connect(exoV,SIGNAL(clicked(bool)),this,SLOT(exoVerif()));
+
+
+       // connect(statutPA,SIGNAL(clicked(bool)),this,SLOT(statutclic()));
     }
 }
 
@@ -321,3 +366,16 @@ void Widget::vidange_R3(){
         return;
     }
 }
+void Widget:: statutclic(){
+    if(statut == 'A'){qDebug()<<"vous aller devenir pilote"; statut = 'P'; return;}
+     if(statut == 'P'){ qDebug()<<"vous aller devenir adminstrateur";statut = 'A'; return;}
+}
+
+void Widget::exo1clic(){ I.initialise(); I.exo1();}
+void Widget::exo2clic(){ I.initialise(); I.exo2();}
+void Widget::exo3clic(){ I.initialise(); I.exo3();}
+void Widget::exo4clic(){ I.initialise(); I.exo4();}
+void Widget::exo5clic(){ I.initialise(); I.exo5();}
+void Widget::exo6clic(){ I.initialise(); I.exo6();}
+void Widget::exoVerif(){I.FinExo(GG[0][1]);}
+//void Widget::exoSuiv(){}

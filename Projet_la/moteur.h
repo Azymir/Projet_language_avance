@@ -11,15 +11,13 @@ class Moteur:public Element					// M1 M2 alimenter
     private:
     Pompe pompe;
     Reservoir reservoir;
-        // int ID;
-        //~ int etat;
     public:
         Moteur();
-        Moteur(int ID);
-        //~ Moteur(const Moteur& m);
+        Moteur(const int ID);
         Reservoir getReservoir();
         Pompe getPompe();
         void setReservoir(Reservoir R);
+        void setReservoirNom(QString nom);
         void setPompe(Pompe P);
         void description();
 

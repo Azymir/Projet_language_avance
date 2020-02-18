@@ -11,6 +11,7 @@ extern TableauBord I;
 extern char statut;
 
 
+
 class Widget : public QWidget
 {
     Q_OBJECT
@@ -36,6 +37,22 @@ private slots:
     void vidange_R1();
     void vidange_R2();
     void vidange_R3();
+    void exo1clic();
+    void exo2clic();
+    void exo3clic();
+    void exo4clic();
+    void exo5clic();
+    void exo6clic();
+
+    void exoVerif();
+
+
+
+
+
+
+
+    void statutclic();
 
 
 private:
@@ -58,6 +75,18 @@ private:
     QPushButton* v_R1;
     QPushButton* v_R2;
     QPushButton* v_R3;
+
+    QPushButton* exo1;
+    QPushButton* exo2;
+    QPushButton* exo3;
+    QPushButton* exo4;
+    QPushButton* exo5;
+    QPushButton* exo6;
+    QPushButton* exoS;
+
+
+     QPushButton* exoV;
+
 
 
 };

@@ -24,7 +24,6 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 
 SOURCES += \
-    identification.cpp \
         main.cpp \
         widget.cpp \
     graphique.cpp \
@@ -33,10 +32,10 @@ SOURCES += \
     reservoir.cpp \
     pompe.cpp \
     moteur.cpp \
-    element.cpp
+    element.cpp \
+    mainwindow.cpp
 
 HEADERS += \
-    identification.h \
         widget.h \
     graphique.h \
     vanne.h \
@@ -44,6 +43,12 @@ HEADERS += \
     reservoir.h \
     pompe.h \
     moteur.h \
-    element.h
+    element.h \
+    mainwindow.h
 
 STATECHARTS +=
+
+DISTFILES +=
+
+FORMS += \
+    mainwindow.ui

@@ -1,5 +1,7 @@
 #include "tableau_bord.h"
 
+int GG[2][8];
+
 TableauBord::TableauBord(){
     //ce constructeur par défaut va instancier un tableau de bord avec tout les element par défaut comme définit sur l'exemple de Mme Kloul.
     //  1) tout les element sont mis à zéro par defaut par le compilateur c++
@@ -314,6 +316,12 @@ void TableauBord::check_reservoir(){
         }
 
     }
+    if(R1.getPlein()==1 && R2.getPlein()==1 && R3.getPlein()==1)
+    {
+        R1.setEtat(1);
+        R2.setEtat(1);
+        R3.setEtat(1);
+    }
 
 }
 void TableauBord::provenance_moteurs()
@@ -323,10 +331,7 @@ void TableauBord::provenance_moteurs()
     this->provenance_M3();
 }
 void TableauBord::provenance_M1(){
-        if(!M1.getEtat())
-        {
-            qDebug() << "Moteur M1 non alimenter\n";
-        }
+
         if(P1.getEtat()==1 && S1.getEtat() && V12.getEtat()==1 && V13.getEtat()==1)
         {
             M1.setReservoir(R1);
@@ -335,11 +340,7 @@ void TableauBord::provenance_M1(){
 
     }
 void TableauBord::provenance_M2(){
-       if(!M2.getEtat())
-       {
-           qDebug() << "Moteur M2 non alimenter\n";
-           return;
-       }
+
        if(P2.getEtat()==0 && S2.getEtat()== 1)
        {
            M2.setReservoir(R2);
@@ -367,17 +368,20 @@ void TableauBord::provenance_M2(){
                }
 
            }
-       else qDebug()<<"bug pour M2, pas réussi a trouver origine carburant";
+       if(S1.getEtat()==0 && V12.getEtat()==0 && P1.getEtat()==0 && V13.getEtat()==1&& R1.getEtat()==0)//si tout ca ok,, on alimente M1
+       {
+
+           M2.setReservoir(R1);
+           M2.setPompe(S1);
+       }
+
 
 
 }
 void TableauBord::provenance_M3(){
-    if(!M3.getEtat())
-    {
-        qDebug() << "Moteur M2 non alimenter\n";
-        return;
-    }
-    else if(P3.getEtat())
+
+
+   if(P3.getEtat())
     {
         M3.setReservoir(R3);
         M3.setPompe(P3);
@@ -397,13 +401,20 @@ void TableauBord::provenance_M3(){
         M3.setReservoir(R2);
         M3.setPompe(S2);
     }
-    else    qDebug() << "Moteur M3 non alimenter\n";
 
+    if(R3.getEtat()==1 && V13.getEtat()==0 && P1.getEtat()==0 && S1.getEtat()==0)
+    {
+
+        M3.setReservoir(R1);
+        M3.setPompe(S1);
+    }
 }
 void TableauBord::check_moteurs(){
+
     this->check_M1();
     this->check_M2();
     this->check_M3();
+
 }
 
 void TableauBord::check_M1(){
@@ -411,6 +422,7 @@ void TableauBord::check_M1(){
     {
 
         M1.setEtat(1);
+        M1.setReservoirNom("Null");
         qDebug()<<"Etat du moteur M1 mis en panne, pas de pompe en état (check_M1())";
     }
     if(P1.getEtat()==1 && S1.getEtat()==0)
@@ -431,87 +443,251 @@ void TableauBord::check_M1(){
         M1.setReservoir(R1);
         M1.setPompe(P1);
     }
-    if(M1.getReservoir().getNom()=="R1" && R1.getEtat()==1) M1.setEtat(1);
-    if(M1.getReservoir().getNom()=="R2" && R2.getEtat()==1) M1.setEtat(1);
-    if(M1.getReservoir().getNom()=="R3" && R3.getEtat()==1) M1.setEtat(1);
+    if(M1.getReservoir().getNom()=="R1" && R1.getEtat()==1)  {M1.setEtat(1); M1.setReservoirNom("Null");}
+    if(M1.getReservoir().getNom()=="R2" && R2.getEtat()==1) {M1.setEtat(1); M1.setReservoirNom("Null");}
+    if(M1.getReservoir().getNom()=="R3" && R3.getEtat()==1) {M1.setEtat(1); M1.setReservoirNom("Null");}
+
+    QString value = "null";
+    if(M1.getEtat()==1)
+    {
+
+        M1.setReservoirNom(value);
+    }
 
 }
 void TableauBord::check_M2(){
-    if(P2.getEtat()==0 && V12.getEtat()==1 && V13.getEtat()==1 && S2.getEtat()==1)
+
+    if(P2.getEtat()==0 && V12.getEtat()==1 && V13.getEtat()==1 && S2.getEtat()==1 && R2.getEtat()==0)
     {
         M2.setEtat(0);
+        M2.setReservoir(R2);
+        M2.setPompe(P2);
     }
-    if(P2.getEtat()==1 && V12.getEtat()==1 && V13.getEtat()==1 && S2.getEtat()==0)
+    if(P2.getEtat()==1 && V12.getEtat()==1  && S2.getEtat()==0 && R2.getEtat()==0)
     {
         M2.setEtat(0);
+        M2.setReservoir(R2);
+        M2.setPompe(S2);
     }
+    if(P2.getEtat()==0 && S2.getEtat()==0 && V12.getEtat()==1 && V13.getEtat()==1 && V23.getEtat()==1 )
+    {
+       M2.setEtat(0);
+       M2.setReservoir(R2);
+       M2.setPompe(P2);
+    }
+
     if(P2.getEtat() == 1 && S2.getEtat()==1  && V12.getEtat()==1 && V13.getEtat()==1)
     {
         M2.setEtat(1);
+
     }
-    if(S1.getEtat()==0 && V12.getEtat()==0 && P1.getEtat()==0 && V13.getEtat()==1)//si tout ca ok,, on alimente M1
+    if(P2.getEtat() == 1 && S2.getEtat()==1  && V13.getEtat()==0 && V23.getEtat()==0)
     {
         M2.setEtat(0);
+        M2.setReservoir(R3);
+
+    }
+    if(P2.getEtat() == 1 && S2.getEtat()==1  && V12.getEtat()==1 && V13.getEtat()==0)
+    {
+        M2.setEtat(1);
+
+    }
+    if(P2.getEtat() == 1 && S2.getEtat()==1  && V12.getEtat()==1 && V23.getEtat()==0)
+    {
+        M2.setEtat(1);
+
+    }
+    if(P2.getEtat() == 1 && S2.getEtat()==1  && V12.getEtat()==1 && V13.getEtat()==1 && V23.getEtat()==1)
+    {
+        M2.setEtat(1);
+
+    }
+    if(P2.getEtat() == 1 && S2.getEtat()==0  && V12.getEtat()==1 && V13.getEtat()==1 && V23.getEtat()==1 && R2.getEtat()==1)
+    {
+        M2.setEtat(1);
+
+    }
+    if(P2.getEtat() == 0 && S2.getEtat()==1  && V12.getEtat()==1 && V13.getEtat()==1 && V23.getEtat()==1 && R2.getEtat()==1)
+    {
+        M2.setEtat(1);
+
+    }
+    if(P2.getEtat() == 1 && S2.getEtat()==1  && V12.getEtat()==0 && V13.getEtat()==1)
+    {
+        M2.setEtat(1);
+
+    }
+    if(S1.getEtat()==0 && V12.getEtat()==0 && P1.getEtat()==0 && V13.getEtat()==1&& R1.getEtat()==0)//si tout ca ok,, on alimente M1
+    {
+        M2.setEtat(0);
+        M2.setReservoirNom("R1");
+
     }
     if(S1.getEtat()==0 && V12.getEtat()==0 && P1.getEtat()==0 && V13.getEtat()==1 && R1.getEtat()==1)//si tout ca ok,, on alimente M1
     {
         M2.setEtat(1);
+
     }
-    if(S3.getEtat()==0 && V23.getEtat()==0 && P3.getEtat()==0 && V13.getEtat()==1)
+    if(S3.getEtat()==0 && V23.getEtat()==0 && P3.getEtat()==0 )
     {  //on alimente M2 avec R3 depuis S3
         M2.setEtat(0);
+        M2.setReservoir(R3);
+        M2.setPompe(S3);
+    }
+    if(S2.getEtat()==1 && P2.getEtat()==1 && V12.getEtat()==0 && V23.getEtat()==1)
+    {
+        M2.setEtat(1);
     }
     if(S3.getEtat()==0 && V23.getEtat()==0 && P3.getEtat()==0 && V13.getEtat()==1 && R3.getEtat()==1)
     {  //si le reservoir R3 qui doit alimenté M2 est vide, le moteur s'arrete
         M2.setEtat(1);
+
     }
-    if(M2.getReservoir().getNom()=="R1" && R1.getEtat()==1) M2.setEtat(1);
-    if(M2.getReservoir().getNom()=="R2" && R2.getEtat()==1) M2.setEtat(1);
-    if(M2.getReservoir().getNom()=="R3" && R3.getEtat()==1) M2.setEtat(1);
+    if(R2.getEtat()==1 && V12.getEtat()==1 && V13.getNom()==1 && V23.getEtat()==1)
+    {
+        M2.setEtat(1);
+
+    }
+    if(P2.getEtat()==1 && S2.getEtat()==1 && V12.getEtat()==0 && P1.getEtat()==1 && S1.getEtat()==1)
+    {
+        M2.setEtat(1);
+
+    }
+    if(P2.getEtat()==1 && S2.getEtat()==1 && V12.getEtat()==0 && P1.getEtat()==0 && S1.getEtat()==1 && V13.getEtat()==1 && V23.getEtat()==1)
+    {
+        M2.setEtat(1);
+
+    }
+    if(P2.getEtat()==1 && S2.getEtat()==0 && V13.getEtat()==1 && V23.getEtat()==1)
+    {
+        M2.setEtat(0);
+        M2.setReservoir(R2);
+        M2.setPompe(S2);
+
+    }
+    if(V12.getEtat()==0 && V23.getEtat()==0 && P3.getEtat()==0 && S3.getEtat()==1 && S1.getEtat()==1 && P2.getEtat()==1 && S2.getEtat()==1)
+    {
+        M2.setEtat(1);
+    }
+    if(P1.getEtat()==0 && S1.getEtat()==1 && V12.getEtat()==0 && V23.getEtat()==1 && S2.getEtat()==0 && R2.getEtat()==0)
+    {
+        M2.setEtat(0);
+        M2.setReservoir(R2);
+    }
+    if(M2.getReservoir().getNom()=="R1" && R1.getEtat()==1){ M2.setEtat(1); M2.setReservoirNom("Null");}
+    if(M2.getReservoir().getNom()=="R2" && R2.getEtat()==1) { M2.setEtat(1); M2.setReservoirNom("Null");}
+    if(M2.getReservoir().getNom()=="R3" && R3.getEtat()==1) { M2.setEtat(1); M2.setReservoirNom("Null");}
+
+
+    if(M2.getEtat()==1)
+    {
+
+        M2.setReservoirNom("Null");
+    }
 }
 void TableauBord::check_M3()
 {
     //cas ou des pompes sont en pannes etc
-    if(P3.getEtat()==0 && V13.getEtat()==1 && V23.getEtat()==1 && S3.getEtat()==1 && R1.getEtat())
+    if(P3.getEtat()==0 && V13.getEtat()==1 && V23.getEtat()==1 && S3.getEtat()==1 && R3.getEtat()==0)
     {
         M3.setEtat(0);
+        M3.setReservoir(R3);
     }
-    if(P3.getEtat()==1 && V13.getEtat()==1 && V23.getEtat()==1 && S3.getEtat()==0)
+    if(P3.getEtat()==1 && V13.getEtat()==1 && V23.getEtat()==1 && S3.getEtat()==0 && R3.getEtat()==0)
     {
         M3.setEtat(0);
+        M3.setReservoir(R3);
+    }
+    if(P3.getEtat()==0 && S3.getEtat()==1 && V23.getEtat()==1 && V13.getEtat()==0)
+    {
+        M3.setEtat(0);
+        M3.setReservoir(R3);
+    }
+    if(P3.getEtat()==1 && V13.getEtat()==1 && S3.getEtat()==1 && R3.getEtat()==1)
+    {
+        M3.setEtat(1);
+    }
+    if(P3.getEtat()==1 && S3.getEtat()==1 && V13.getEtat()==1 && V23.getEtat()==1)
+    {
+        M3.setEtat(1);
+    }
+    if(P3.getEtat()==0 && V13.getEtat()==1 && V23.getEtat()==1 && S3.getEtat()==0 && R3.getEtat()==0)
+    {
+        M3.setEtat(0);
+        M3.setReservoir(R3);
+    }
+    if(P3.getEtat()==0 && V13.getEtat()==1  && S3.getEtat()==0 && R3.getEtat()==1)
+    {
+        M3.setEtat(1);
+    }
+    if(P3.getEtat()==0 && V13.getEtat()==1  && S3.getEtat()==1 && R3.getEtat()==1)
+    {
+        M3.setEtat(1);
+    }
+    if(P3.getEtat()==1 && V13.getEtat()==1  && S3.getEtat()==0 && R3.getEtat()==1)
+    {
+        M3.setEtat(1);
+    }
+
+    if(P3.getEtat()==0 && V13.getEtat()==1 && V23.getEtat()==0 && S3.getEtat()==0 && R3.getEtat()==0)
+    {
+        M3.setEtat(0);
+        M3.setReservoir(R3);
     }
     if(P3.getEtat() == 1 && S3.getEtat()==1  && V13.getEtat()==1 && V23.getEtat()==1)
     {
         M3.setEtat(1);
+
     }
-    if(S1.getEtat()==0 && V13.getEtat()==0 && P1.getEtat()==0 && V23.getEtat()==1)//si tout ca ok,, on alimente M1
+    if(S1.getEtat()==0 && V13.getEtat()==0 && P1.getEtat()==0 && V23.getEtat()==1 && R1.getEtat()==0)//si tout ca ok,, on alimente M1
     {
         M3.setEtat(0);
+        M3.setReservoir(R1);
     }
     if(S1.getEtat()==0 && V13.getEtat()==0 && P1.getEtat()==0 && V23.getEtat()==1 && R1.getEtat()==1)//si tout ca ok,, on alimente M1
     {
         M3.setEtat(1);
+
     }
     if(S2.getEtat()==0 && V13.getEtat()==0 && P2.getEtat()==0 && V23.getEtat()==1)
     {  //on alimente M2 avec R3 depuis S3
         M3.setEtat(0);
+        M3.setReservoir(R2);
     }
     if(S2.getEtat()==0 && V13.getEtat()==0 && P2.getEtat()==0 && V23.getEtat()==1 && R2.getEtat()==1)
     {  //on alimente M2 avec R3 depuis S3
         M3.setEtat(1);
+
     }
     if(P2.getEtat()==1 && S2.getEtat()==0 && V13.getEtat()==0 && V12.getEtat()==1 && V23.getEtat()==1 && P3.getEtat()==1 && S3.getEtat()==1)
     {
         M3.setEtat(1);
-        qDebug()<<"Attention !! M3 plus alimenté";}
-    if(M3.getReservoir().getNom()=="R1" && R1.getEtat()==1) M3.setEtat(1);
-    if(M3.getReservoir().getNom()=="R2" && R2.getEtat()==1) M3.setEtat(1);
-    if(M3.getReservoir().getNom()=="R3" && R3.getEtat()==1) M3.setEtat(1);
+
+    }
+    if(R3.getEtat()==1 && V13.getEtat()==0 && P1.getEtat()==0 && S1.getEtat()==0)
+    {
+        M3.setEtat(0);
+        M3.setReservoir(R1);
+
+    }
+    if( R3.getEtat()==1 && V12.getEtat()==1 && V13.getNom()==1 && V23.getEtat()==1)
+    {
+        M3.setEtat(1);
+
+    }
+    if(M3.getReservoir().getNom()=="R1" && R1.getEtat()==1) {M3.setEtat(1); M3.setReservoirNom("NUll");}
+    if(M3.getReservoir().getNom()=="R2" && R2.getEtat()==1) {M3.setEtat(1); M3.setReservoirNom("NUll");}
+    if(M3.getReservoir().getNom()=="R3" && R3.getEtat()==1) {M3.setEtat(1); M3.setReservoirNom("NUll");}
 
 
+    if(M3.getEtat()==1)
+    {
+
+        M3.setReservoirNom("Null");
+    }
     //cas des reservoirs en pannes
-    if()
 }
+
 void TableauBord::associe_PompeEtMoteur(){
 
 }
@@ -525,4 +701,147 @@ void TableauBord::check_pompe_fonctionnelle(){
 
 }
 
+void TableauBord::exo1()
+{
+    GG[0][1]=1;
+    //Exercice 1
+    qDebug()<<"Simulation de panne\n";
+
+    P2.setFonctionnel(1);
+
+    GG[1][1] =0;
+
+
+
+
+
+
+
+    qDebug()<<"\ntStart";
+}
+
+void TableauBord::exo2()
+{
+    //Exercice 2
+     GG[0][1]=2;
+    qDebug()<<"Simulation de panne\n";
+
+    P2.setFonctionnel(1);
+    P3.setFonctionnel(1);
+    R2.setPlein(1);
+
+    GG[1][2] =0;
+
+
+
+
+
+
+    qDebug()<<"\ntStart";
+}
+
+void TableauBord::exo3()
+{
+   //Exercice 3
+     GG[0][1]=3;
+    qDebug()<<"Simulation de panne\n";
+
+
+    V12.setEtat(0);
+    P2.setFonctionnel(1);
+    P3.setFonctionnel(1);
+    S3.setFonctionnel(1);
+    R1.setPlein(1);
+
+    GG[1][3] =0;
+
+
+    qDebug()<<"\ntStart";
+}
+void TableauBord::exo4()
+{
+ GG[0][1]=4;
+    qDebug()<<"Simulation de panne\n";
+
+    P1.setFonctionnel(1);
+    P1.setFonctionnel(1);
+    S3.setFonctionnel(1);
+    R3.setPlein(1);
+
+    GG[1][4] =0;
+
+
+    qDebug()<<"\ntStart";
+}
+void TableauBord::exo5()
+{
+ GG[0][1]=5;
+    qDebug()<<"Simulation de panne\n";
+    S1.setFonctionnel(1);
+    R1.setPlein(1);
+    V13.setEtat(0);
+    P2.setFonctionnel(1);
+    R3.setPlein(1);
+
+    GG[1][5] =0;
+
+
+    qDebug()<<"\ntStart";
+}
+void TableauBord::exo6()
+{
+    GG[0][1]=6;
+    qDebug()<<"Simulation de panne\n";
+    R2.setPlein(1);
+    R3.setPlein(1);
+    P1.setFonctionnel(1);
+    P2.setFonctionnel(1);
+    S2.setFonctionnel(1);
+
+    GG[1][6] =0;
+
+    qDebug()<<"\ntStart";
+}
+
+
+bool TableauBord::FinExo(int x)
+{
+    if(M1.getEtat() == 0 && M2.getEtat() == 0 && M3.getEtat() == 0)
+    {
+        qDebug() << "Bravo vous avez reussi l'exercice";
+        GG[1][x]=1;
+        GG[0][0] = GG[1][1] + GG[1][2] + GG[1][3] + GG[1][4] + GG[1][5] + GG[1][6];
+        return 1;
+
+    }
+
+    return 0;
+
+}
+void TableauBord::initialise()
+{
+    P1.setEtat(0);  P1.setFonctionnel(0);
+    P2.setEtat(0);  P2.setFonctionnel(0);
+    P3.setEtat(0);  P3.setFonctionnel(0);
+    S1.setEtat(1);  S1.setFonctionnel(0);
+    S2.setEtat(1);  S2.setFonctionnel(0);
+    S3.setEtat(1);  S3.setFonctionnel(0);
+
+    V12.setEtat(1);
+    V13.setEtat(1);
+    V23.setEtat(1);
+    VT12.setEtat(1);
+    VT23.setEtat(1);
+
+    M1.setEtat(0);
+    M2.setEtat(0);
+    M3.setEtat(0);
+
+    R1.setPlein(0); R1.setEtat(0);
+    R2.setPlein(0); R2.setEtat(0);
+    R3.setPlein(0); R3.setEtat(0);
+
+
+
+}
 TableauBord::~TableauBord(){}

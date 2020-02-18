@@ -8,8 +8,7 @@
 
 class Pompe: public Element			// P1 et P2 dans Reservoir
 {
-    private:
-    //Reservoir reservoir;    //reservoir d'ou provient le carburant
+    private:   //reservoir d'ou provient le carburant
     bool fonctionnel;       // booleen indiquant sir la pompe est en panne ou pas
 
 
@@ -20,7 +19,6 @@ class Pompe: public Element			// P1 et P2 dans Reservoir
         bool getFonctionnel();
         void setFonctionnel(bool fonctionnel);
         void checkFontionnelle();
-        //~ Pompe(const Pompe &p);
         ~Pompe();
         void description();
 

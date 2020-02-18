@@ -8,6 +8,7 @@
 #include <QApplication>
 #include <iostream>
 #include <cmath>
+extern int GG[2][8];
 
 class TableauBord
 {
@@ -99,7 +100,22 @@ class TableauBord
     void check_M2();
     void check_M3();
     void check_moteurs();
-    ~TableauBord();							// vidange des réservoirs.
+
+
+
+       void exo1();
+       void exo2();
+       void exo3();
+       void exo4();
+       void exo5();
+       void exo6();
+       bool FinExo(int x);
+
+       void initialise();
+
+
+
+    ~TableauBord();
 };
 
 #endif // TABLEAU_BORD_H

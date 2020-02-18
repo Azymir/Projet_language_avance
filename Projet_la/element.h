@@ -13,9 +13,8 @@ private:
     QString nom;  // ils contiendrons aussi leur nom, ou leur id. ex: VT12
 
     public:
-    //~ virtual void Panne();
     Element();						// Constructeur par defaut
-    Element(int etat);					// constructeur avec un état passé en paramètres
+    Element(const int etat);					// constructeur avec un état passé en paramètres
     virtual int getEtat();
     virtual QString getNom();
     virtual void setEtat(int etat);
